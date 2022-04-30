@@ -99,7 +99,6 @@ export default class PlayScene extends Scene {
     // ===== 開始 =====
     this.gameStatus = "playing";
     this.question();
-    // console.log(mondai);
   }
 
   update() {}
@@ -131,8 +130,8 @@ export default class PlayScene extends Scene {
 
   question() {
     this.questionIndex = Math.floor(Math.random() * this.questions.length);
-    this.questionSentence = this.questions[this.questionIndex][1];
-    this.imagePath = this.questions[this.questionIndex][2];
+    this.questionSentence = this.questions[this.questionIndex][2];
+    this.imagePath = this.questions[this.questionIndex][3];
     console.log("quin", this.questionSentence);
     // this.questionImage.name = "sky";
     this.inputIndex = 0; // 入力の文字数を0にリセット
