@@ -1,6 +1,6 @@
 
 import { Scene } from "phaser";
-import { mondai } from "@/game/scenes/BootScene";
+import { mondai, keyList } from "@/game/scenes/BootScene";
 export default class PlayScene extends Scene {
   constructor() {
     super({ key: "PlayScene" });
@@ -19,8 +19,14 @@ export default class PlayScene extends Scene {
     this.restTime = 100;
     this.inputKeys = "";
 
-    // === Text
-    // スコア、タイマー
+    // ==== 背景画像 ====
+    this.BGImage = this.add.image(400,300, "happy_bg");
+
+    // ==== キーボード文字 ====
+    // for(var i=0;i < keyList.length; i++){
+    //   this.keyImages = this.add.image(100, (20 + i*30), String('key_' + keyList[i]))
+    // }
+    // ==== 文字 ====
     this.add
       .text(600, 27, "スコア")
       .setFontSize(32)
@@ -31,18 +37,23 @@ export default class PlayScene extends Scene {
       .setOrigin(1, 0)
       .setFontSize(32)
       .setFontFamily("monospace, serif");
-    this.timerText = this.add
-      .text(200, 27, String(this.restTime))
+    this.add
+      .text(30,27, "残り　　　　　　　秒")
+      .setFontSize(32)
+      .setFontFamily("monospace, serif")
+      .setOrigin(0);
+      this.timerText = this.add
+      .text(150, 27, String(this.restTime))
       .setOrigin(1, 0)
       .setFontSize(32)
       .setFontFamily("monospace, serif");
-    this.keyText = this.add
-      .text(200, 100, String(this.lastKey))
-      .setOrigin(1, 0)
-      .setFontSize(32)
-      .setFontFamily("monospace, serif");
+    // this.keyText = this.add
+    //   .text(200, 100, String(this.lastKey))
+    //   .setOrigin(1, 0)
+    //   .setFontSize(32)
+    //   .setFontFamily("monospace, serif");
     this.questionText = this.add
-      .text(300, 200, String(this.questionSentence))
+      .text(400, 450, String(this.questionSentence))
       .setOrigin(1, 0)
       .setFontSize(32)
       .setFontFamily("monospace, serif");
@@ -52,13 +63,6 @@ export default class PlayScene extends Scene {
       .setFontSize(32)
       .setFontFamily("monospace, serif");
     this.questionImage = this.add.image(400, 300, "bomb");
-    // this.add.image(400, 300, 'sky') // 最後に
-
-    // const bomb = this.physics.add.image(400, 200, 'bomb')
-    // bomb.setCollideWorldBounds(true)
-    // bomb.body.onWorldBounds = true // enable worldbounds collision event
-    // bomb.setBounce(1)
-    // bomb.setVelocity(200, 20);
 
     this.sound.add("thud");
     this.physics.world.on("worldbounds", () => {
@@ -103,7 +107,7 @@ export default class PlayScene extends Scene {
     console.log(event.key.toLowerCase());
     if (this.gameStatus != "playing") return;
     this.lastKey = event.key.toLowerCase();
-    this.keyText.text = String(this.lastKey);
+    // this.keyText.text = String(this.lastKey);
     if (this.waitingKey == event.key.toLowerCase()) {
       this.inputIndex++;
       this.score++;
