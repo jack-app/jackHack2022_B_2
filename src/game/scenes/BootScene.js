@@ -1,10 +1,10 @@
 import { Scene } from 'phaser'
 import sky from '@/game/assets/sky.png'
 import bomb from '@/game/assets/bomb.png'
-import thudMp3 from '@/game/assets/thud.mp3'
-import thudOgg from '@/game/assets/thud.ogg'
+import titleBack from '@/game/assets/titleBack.png'
 import missWav from '@/game/assets/miss.wav'
 import happy_bg from '@/game/assets/happy_BG.jpg'
+import TitleScene from '@/game/scenes/TitleScene'
 
 export let mondai = [];
 export let keyList = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', 'hyphen', 'hat', 'doller', 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', 'at', 'Lkakko', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'semicoron', 'coron', 'Rkakko', 'shift', 'z', 'x', 'c', 'v', 'b', 'n', 'm', 'comma', 'period', 'slash', 'under', 'enter']
@@ -17,6 +17,7 @@ export default class BootScene extends Scene {
     // ロードするやつ
     this.load.image('sky', sky)
     this.load.image('bomb', bomb)
+
     this.load.image('happy_bg', happy_bg)
     this.whiteKeyImages={};
     this.orangeKeyImages={}
@@ -29,11 +30,12 @@ export default class BootScene extends Scene {
     // 音声
     this.load.audio('thud', [thudMp3, thudOgg])
     this.load.audio('miss', missWav)
+
     getFile();
   }
-
+   //title start
   create () {
-    this.scene.start('PlayScene')
+    this.scene.start('TitleScene')
   }
 
 }

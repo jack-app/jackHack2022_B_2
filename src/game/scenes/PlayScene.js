@@ -1,8 +1,10 @@
+
 import { Scene } from "phaser";
 import { mondai, keyList } from "@/game/scenes/BootScene";
 export default class PlayScene extends Scene {
   constructor() {
     super({ key: "PlayScene" });
+
   }
 
   create() {
@@ -10,11 +12,12 @@ export default class PlayScene extends Scene {
     this.inputIndex = 0;
     this.score = 0;
     this.lastKey = "";
-    this.waitingKey = "s";
+    this.waitingKey = "";
     this.questionImagePath = "bomb";
     this.questionSentence = mondai[0][0];
     this.questions = mondai;
     this.restTime = 100;
+    this.inputKeys = "";
 
     // ==== 背景画像 ====
     this.BGImage = this.add.image(400,300, "happy_bg");
@@ -51,6 +54,11 @@ export default class PlayScene extends Scene {
     //   .setFontFamily("monospace, serif");
     this.questionText = this.add
       .text(400, 450, String(this.questionSentence))
+      .setOrigin(1, 0)
+      .setFontSize(32)
+      .setFontFamily("monospace, serif");
+    this.inputText = this.add
+      .text(300, 300, String(this.questionSentence))
       .setOrigin(1, 0)
       .setFontSize(32)
       .setFontFamily("monospace, serif");
@@ -107,13 +115,17 @@ export default class PlayScene extends Scene {
 
       if (this.inputIndex > this.questionSentence.length - 1) {
         // 次の問題に移る
-        // this.sfx_success.play();
+        this.inputText.text = "";
+        // TODO this.sfx_success.play();
         this.question();
       } else {
-        // this.sfx_typing.play();
+        // TODO this.sfx_typing.play();
         // 次の文字に移る
+        this.inputText.text += String(this.lastKey);
         this.waitingKey = this.questionSentence[this.inputIndex].toLowerCase();
       }
+    }else{
+      // TODO 間違い音を鳴らす
     }
   }
 
