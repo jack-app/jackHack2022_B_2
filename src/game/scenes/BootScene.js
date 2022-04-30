@@ -3,6 +3,7 @@ import sky from '@/game/assets/sky.png'
 import bomb from '@/game/assets/bomb.png'
 import thudMp3 from '@/game/assets/thud.mp3'
 import thudOgg from '@/game/assets/thud.ogg'
+import TitleScene from '@/game/scenes/TitleScene'
 
 export default class BootScene extends Scene {
   constructor () {
@@ -14,8 +15,8 @@ export default class BootScene extends Scene {
     this.load.image('bomb', bomb)
     this.load.audio('thud', [thudMp3, thudOgg])
   }
-
+   //title start
   create () {
-    this.scene.start('PlayScene')
+    this.scene.start('TitleScene')
   }
 }
