@@ -4,6 +4,10 @@ import TitleScene from '@/game/scenes/TitleScene'
 
 
 export default class PlayScene extends Scene {
+
+
+
+
   constructor () {
     super({ key: 'PlayScene' })
   }
@@ -22,8 +26,15 @@ export default class PlayScene extends Scene {
       this.sound.play('thud', { volume: 0.75 })
     })
 
+
+
+
+
+
   }
 
   update () {
-  }
+   
+    }
+
 }
