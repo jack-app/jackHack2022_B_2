@@ -1,8 +1,10 @@
+
 import { Scene } from "phaser";
 import { mondai } from "@/game/scenes/BootScene";
 export default class PlayScene extends Scene {
   constructor() {
     super({ key: "PlayScene" });
+
   }
 
   create() {
