@@ -50,7 +50,7 @@ export default class LoadingScene extends Phaser.Scene {
 // 問題データを読み込む　assets内にtsvファイルを作成する必要があります。
 function getFile() {
     let req = new XMLHttpRequest();
-    req.open('get', '/assets/typing/data/english.tsv', true);
+    req.open('get', '/assets/typing/data/english.csv', true);
     req.send(null); // HTTPリクエストの発行
 
     req.onload = function() {

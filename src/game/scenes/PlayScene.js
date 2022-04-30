@@ -18,6 +18,7 @@ export default class PlayScene extends Scene {
     this.questions = mondai;
     this.restTime = 100;
     this.inputKeys = "";
+    this.keyImages = { orange: [], white: [] };
 
     // ==== 背景画像 ====
     this.BGImage = this.add.image(400,300, "happy_bg");
@@ -64,6 +65,11 @@ export default class PlayScene extends Scene {
       .setFontFamily("monospace, serif");
     this.questionImage = this.add.image(400, 300, "bomb");
 
+    for(var i=0;i < keyList.length; i++){
+      let x = this.put_key(i)[0];
+      let y = this.put_key(i)[1];
+      this.keyImages["white"][i] = this.add.image(x,y,"white_key_"+keyList[i]);
+    }
     this.sound.add("thud");
     this.physics.world.on("worldbounds", () => {
       this.sound.play("thud", { volume: 0.75 });
@@ -102,11 +108,30 @@ export default class PlayScene extends Scene {
   }
 
   update() {}
+  put_key(index){// キーボードの画像の一個一個のボタンの一を返す関数
+    let counter = 0;
+    let x_one = 65;
+    let x_zurasu = 5;
+    let y_one = 80;
+    let x_base = 10;
+    let y_base = 200;
+    if(index>=0 && index <14){
+      return [x_base + x_zurasu * 0 + (index - counter) * x_one, y_base + y_one*0]
+    }else if(index < 25){
+      counter = 13;
+      return [x_base + x_zurasu * 1 + (index - counter) * x_one, y_base + y_one*1]
+    }else if(index < 38 ){
+      counter = 26;
+      return [x_base + x_zurasu * 2 + (index - counter) * x_one, y_base + y_one*2]
+    }else{
+      counter = 40
+      return [x_base + x_zurasu * 3 + (index - counter) * x_one, y_base + y_one*3]
+    }
+  }
   typing(event) {
     console.log(event.key.toLowerCase());
     if (this.gameStatus != "playing") return;
     this.lastKey = event.key.toLowerCase();
-    // this.keyText.text = String(this.lastKey);
     if (this.waitingKey == event.key.toLowerCase()) {
       this.inputIndex++;
       this.score++;
@@ -127,6 +152,7 @@ export default class PlayScene extends Scene {
       // TODO 間違い音を鳴らす
     }
   }
+
 
   question() {
     this.questionIndex = Math.floor(Math.random() * this.questions.length);
