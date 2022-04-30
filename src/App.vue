@@ -1,17 +1,38 @@
 <template>
-<h1 style="text-align:center">感じるタイピング
-</h1>
+
+
+<div style="text-align:center">
+<img src="@/assets/header.png" width="800" height="167">
+</div>
+
+
+
+<img src="@/assets/eye.png" 
+class="class1">
 
 
 <img src="@/assets/denkyuu-preview.png" 
-class="class2"
->
+class="class2">
+
+<img src="@/assets/hand-1.png" 
+class="class3">
 
 <img src="@/assets/hasami-preview.png" 
 class="class4">
 
+<img src="@/assets/ear.png" 
+class="class5">
+
 <img src="@/assets/huurinn.png" 
 class="class6">
+
+<img src="@/assets/nouse.png" 
+class="class7">
+
+
+<img src="@/assets/leaf_mint.png" 
+class="class8">
+
 
 
   <Game />
@@ -25,39 +46,69 @@ export default {
 </script>
 
 <style lang="scss">
-h1 {
 
-   font-size: 75px;
-   color: #7fffd4;
-  text-shadow:1px 1px 0 #000, -1px -1px 0 #000,
-              -1px 1px 0 #000, 1px -1px 0 #000,
-              0px 1px 0 #000,  0-1px 0 #000,
-              -1px 0 0 #000, 1px 0 0 #000;
-
+.class1{
+  position: absolute;
+  top: 400px;
+  left: 1190px;
+  width: 90px;
+  height: 90px;
 }
 
 .class2{
   position: absolute;
-  top: 270px;
+  top: 200px;
+  left: 1120px;
+  width: 210px;
+  height: 157px;
+}
+
+.class3{
+  position: absolute;
+  top: 670px;
   left: 100px;
-  width: 220px;
-  height: 167px;
+  width: 130px;
+  height: 150px;
 }
 
 .class4{
   position: absolute;
-  top: 280px;
-  left: 1130px;
+  top: 520px;
+  left: 100px;
   width: 164px;
+  height: 150px;
+}
+
+.class5{
+  position: absolute;
+  top: 380px;
+  left: 100px;
+  width: 130px;
   height: 150px;
 }
 
 .class6{
   position: absolute;
-  top: 430px;
-  left: 160px;
-  width: 100px;
-  height: 210px;
+  top: 200px;
+  left: 130px;
+  width: 70px;
+  height: 150px;
+}
+
+.class7{
+  position: absolute;
+  top: 670px;
+  left: 1170px;
+  width: 164px;
+  height: 150px;
+}
+
+.class8{
+  position: absolute;
+  top: 520px;
+  left: 1170px;
+  width: 150px;
+  height: 150px;
 }
 
 
