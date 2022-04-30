@@ -1,5 +1,5 @@
 import { Scene } from "phaser";
-import { mondai } from "@/game/scenes/BootScene";
+import { mondai, keyList } from "@/game/scenes/BootScene";
 export default class PlayScene extends Scene {
   constructor() {
     super({ key: "PlayScene" });
@@ -16,8 +16,14 @@ export default class PlayScene extends Scene {
     this.questions = mondai;
     this.restTime = 100;
 
-    // === Text
-    // スコア、タイマー
+    // ==== 背景画像 ====
+    this.BGImage = this.add.image(400,300, "happy_bg");
+
+    // ==== キーボード文字 ====
+    // for(var i=0;i < keyList.length; i++){
+    //   this.keyImages = this.add.image(100, (20 + i*30), String('key_' + keyList[i]))
+    // }
+    // ==== 文字 ====
     this.add
       .text(600, 27, "スコア")
       .setFontSize(32)
@@ -44,13 +50,6 @@ export default class PlayScene extends Scene {
       .setFontSize(32)
       .setFontFamily("monospace, serif");
     this.questionImage = this.add.image(400, 300, "bomb");
-    // this.add.image(400, 300, 'sky') // 最後に
-
-    // const bomb = this.physics.add.image(400, 200, 'bomb')
-    // bomb.setCollideWorldBounds(true)
-    // bomb.body.onWorldBounds = true // enable worldbounds collision event
-    // bomb.setBounce(1)
-    // bomb.setVelocity(200, 20);
 
     this.sound.add("thud");
     this.physics.world.on("worldbounds", () => {
