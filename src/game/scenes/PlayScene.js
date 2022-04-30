@@ -34,18 +34,23 @@ export default class PlayScene extends Scene {
       .setOrigin(1, 0)
       .setFontSize(32)
       .setFontFamily("monospace, serif");
-    this.timerText = this.add
-      .text(200, 27, String(this.restTime))
+    this.add
+      .text(30,27, "残り　　　　　　　秒")
+      .setFontSize(32)
+      .setFontFamily("monospace, serif")
+      .setOrigin(0);
+      this.timerText = this.add
+      .text(150, 27, String(this.restTime))
       .setOrigin(1, 0)
       .setFontSize(32)
       .setFontFamily("monospace, serif");
-    this.keyText = this.add
-      .text(200, 100, String(this.lastKey))
-      .setOrigin(1, 0)
-      .setFontSize(32)
-      .setFontFamily("monospace, serif");
+    // this.keyText = this.add
+    //   .text(200, 100, String(this.lastKey))
+    //   .setOrigin(1, 0)
+    //   .setFontSize(32)
+    //   .setFontFamily("monospace, serif");
     this.questionText = this.add
-      .text(300, 200, String(this.questionSentence))
+      .text(400, 450, String(this.questionSentence))
       .setOrigin(1, 0)
       .setFontSize(32)
       .setFontFamily("monospace, serif");
@@ -94,7 +99,7 @@ export default class PlayScene extends Scene {
     console.log(event.key.toLowerCase());
     if (this.gameStatus != "playing") return;
     this.lastKey = event.key.toLowerCase();
-    this.keyText.text = String(this.lastKey);
+    // this.keyText.text = String(this.lastKey);
     if (this.waitingKey == event.key.toLowerCase()) {
       this.inputIndex++;
       this.score++;
