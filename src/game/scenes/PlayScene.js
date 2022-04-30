@@ -10,7 +10,7 @@ export default class PlayScene extends Scene {
     this.inputIndex = 0;
     this.score = 0;
     this.lastKey = "";
-    this.waitingKey = "s";
+    this.waitingKey = "";
     this.questionImagePath = "bomb";
     this.questionSentence = mondai[0][0];
     this.questions = mondai;
@@ -110,16 +110,16 @@ export default class PlayScene extends Scene {
       if (this.inputIndex > this.questionSentence.length - 1) {
         // 次の問題に移る
         this.inputText.text = "";
-        // this.sfx_success.play();
+        // TODO this.sfx_success.play();
         this.question();
       } else {
-        // this.sfx_typing.play();
+        // TODO this.sfx_typing.play();
         // 次の文字に移る
         this.inputText.text += String(this.lastKey);
         this.waitingKey = this.questionSentence[this.inputIndex].toLowerCase();
       }
     }else{
-      // 間違い音を鳴らす
+      // TODO 間違い音を鳴らす
     }
   }
 
