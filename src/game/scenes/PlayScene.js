@@ -1,19 +1,25 @@
 
 import { Scene } from "phaser";
-import { mondai, keyList } from "@/game/scenes/BootScene";
+import { keyList } from "@/game/scenes/BootScene";
+import { mondai } from '@/game/scenes/BootScene'
+
+
 export default class PlayScene extends Scene {
   constructor() {
     super({ key: "PlayScene" });
 
   }
 
+
   create() {
+    console.log(mondai)
     this.gameStatus = "starting";
     this.inputIndex = 0;
     this.score = 0;
     this.lastKey = "";
     this.waitingKey = "";
     this.questionImagePath = "bomb";
+    this.questionImagePosition = [300,400];
     this.questionSentence = mondai[0][0];
     this.questions = mondai;
     this.restTime = 100;
@@ -63,13 +69,16 @@ export default class PlayScene extends Scene {
       .setOrigin(1, 0)
       .setFontSize(32)
       .setFontFamily("monospace, serif");
-    this.questionImage = this.add.image(400, 300, "bomb");
+    
+    this.questionImage = this.add.image(this.questionImagePosition, this.questionImagePath);
+    
 
-    for(var i=0;i < keyList.length; i++){
-      let x = this.put_key(i)[0];
-      let y = this.put_key(i)[1];
-      this.keyImages["white"][i] = this.add.image(x,y,"white_key_"+keyList[i]);
-    }
+    // for(var i=0;i < keyList.length; i++){
+    //   let x = this.put_key(i)[0];
+    //   let y = this.put_key(i)[1];
+    //   this.keyImages["white"][i] = this.add.image(x,y,"white_key_"+keyList[i]);
+    // }
+
     this.sound.add("thud");
     this.physics.world.on("worldbounds", () => {
       this.sound.play("thud", { volume: 0.75 });
@@ -155,11 +164,13 @@ export default class PlayScene extends Scene {
 
 
   question() {
+    this.questionImage.visible = false;
     this.questionIndex = Math.floor(Math.random() * this.questions.length);
     this.questionSentence = this.questions[this.questionIndex][2];
-    this.imagePath = this.questions[this.questionIndex][3];
-    console.log("quin", this.questionSentence);
-    // this.questionImage.name = "sky";
+    this.questionImagePath = 'q_img_'  + this.questions[this.questionIndex][2];
+    console.log("quin", this.questionImagePath);
+    this.questionImage = this.add.image(400,300, this.questionImagePath);
+
     this.inputIndex = 0; // 入力の文字数を0にリセット
     this.waitingKey = this.questionSentence[this.inputIndex].toLowerCase();
 
