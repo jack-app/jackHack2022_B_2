@@ -35,7 +35,7 @@ export default class PlayScene extends Scene {
     // }
     // ==== 文字 ====
     this.add
-      .text(600, 27, "スコア")
+      .text(550, 27, "スコア")
       .setFontSize(32)
       .setFontFamily("monospace, serif")
       .setOrigin(0);
@@ -60,12 +60,12 @@ export default class PlayScene extends Scene {
     //   .setFontSize(32)
     //   .setFontFamily("monospace, serif");
     this.questionText = this.add
-      .text(400, 450, String(this.questionSentence))
+      .text(450, 450, String(this.questionSentence))
       .setOrigin(1, 0)
       .setFontSize(32)
       .setFontFamily("monospace, serif");
     this.inputText = this.add
-      .text(300, 300, String(this.questionSentence))
+      .text(450, 400, String(this.questionSentence))
       .setOrigin(1, 0)
       .setFontSize(32)
       .setFontFamily("monospace, serif");
