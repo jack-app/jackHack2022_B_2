@@ -2,6 +2,7 @@ import { Scene } from 'phaser';
 import sky from '@/game/assets/sky.png'
 import bomb from '@/game/assets/bomb.png'
 import titleBack from '@/game/assets/titleBack.png'
+import titleLogo from '@/game/assets/titleLogo.png'
 import missWav from '@/game/assets/miss.wav'
 import happy_bg from '@/game/assets/happy_BG.jpg'
 import TitleScene from '@/game/scenes/TitleScene'
@@ -122,6 +123,10 @@ export let keyList = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', 'hyphen'
 'z', 'x', 'c', 'v', 'b', 'n', 'm', 'comma', 'period', 'slash', 'under', 'enter']
 export default class BootScene extends Scene {
 
+  constructor () {
+    super({ key: 'BootScene' })
+  }
+
     preload() {
         getFile().then(()=>{
         // ロードするやつ
@@ -143,6 +148,8 @@ export default class BootScene extends Scene {
        this.load.image('sky', sky)
         this.load.image('bomb', bomb)
         this.load.image('happy_bg', happy_bg)
+      this.load.image('titleBack', titleBack)
+    this.load.image('titleLogo', titleLogo)
         // 音声
       this.load.image('titleBack',titleBack)
     this.load.audio('miss', missWav)
@@ -153,10 +160,10 @@ export default class BootScene extends Scene {
 
     }
 
-    create() {
-        this.scene.start('PlayScene')
-    }
-
+   //title start
+  create () {
+    this.scene.start('TitleScene')
+  }
 }
 
 function  getFile() {
@@ -169,6 +176,7 @@ function  getFile() {
         };
         req.send(null); // HTTPリクエストの発行
     })
+
 }
   
   // 各行をタブで区切った配列を生成する
