@@ -1,4 +1,3 @@
-export let mondai = [];
 export default class TitleScene extends Phaser.Scene {
   sfx_gong1 = null;
   fontSize = 32;
@@ -8,11 +7,9 @@ export default class TitleScene extends Phaser.Scene {
     super({ key: "TitleScene" });
   }
   preload(){
-    // 問題のcsvをダウンロード
-    
+
 }
   create() {
-    getFile();
     // ===== ゲームオブジェクト =====
     // Sound
     if (this.sfx_gong1 == null) this.sfx_gong1 = this.sound.add("clap", { volume: 0.1 });
@@ -42,23 +39,4 @@ export default class TitleScene extends Phaser.Scene {
   }
 
   
-}
-function getFile() {
-  let req = new XMLHttpRequest();
-  console.log('mononononono')
-  req.open("get", "/questions.csv", true);
-  req.send(null); // HTTPリクエストの発行
-
-  req.onload = function() {
-      convertTSVtoArray(req.responseText);
-  };
-}
-
-// 各行をタブで区切った配列を生成する
-function convertTSVtoArray(str) {
-  let tmp = str.split("\n");
-
-  for (let i = 0; i < tmp.length; ++i) {
-      mondai[i] = String(tmp[i]).split(",");
-  }
 }
