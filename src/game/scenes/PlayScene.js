@@ -29,7 +29,7 @@ export default class PlayScene extends Scene {
     // ==== 背景画像 ====
     console.log(bg_list[Math.floor(Math.random() * bg_list.length)])
     this.BGImage = this.add.image(400,300, "BG_" + bg_list[Math.floor(Math.random() * bg_list.length)]);
-    bg_list[Math.floor(Math.random() * bg_list.length)]
+    // bg_list[Math.floor(Math.random() * bg_list.length)]
 
     // ==== キーボード文字 ====
     // for(var i=0;i < keyList.length; i++){
