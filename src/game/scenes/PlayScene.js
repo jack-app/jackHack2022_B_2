@@ -35,7 +35,7 @@ export default class PlayScene extends Scene {
     // }
     // ==== 文字 ====
     this.add
-      .text(600, 27, "スコア")
+      .text(550, 27, "スコア")
       .setFontSize(32)
       .setFontFamily("monospace, serif")
       .setOrigin(0);
@@ -60,12 +60,12 @@ export default class PlayScene extends Scene {
     //   .setFontSize(32)
     //   .setFontFamily("monospace, serif");
     this.questionText = this.add
-      .text(400, 450, String(this.questionSentence))
+      .text(450, 450, String(this.questionSentence))
       .setOrigin(1, 0)
       .setFontSize(32)
       .setFontFamily("monospace, serif");
     this.inputText = this.add
-      .text(300, 300, String(this.questionSentence))
+      .text(450, 400, String(this.questionSentence))
       .setOrigin(1, 0)
       .setFontSize(32)
       .setFontFamily("monospace, serif");
@@ -79,7 +79,14 @@ export default class PlayScene extends Scene {
     //   this.keyImages["white"][i] = this.add.image(x,y,"white_key_"+keyList[i]);
     // }
 
-    this.sound.add("thud");
+    this.sfx_fanfare = this.sound.add("fanfare");
+    this.sfx_correct = this.sound.add("correct");
+    this.sfx_clap = this.sound.add("clap");
+    this.sfx_thud = this.sound.add("thud");
+    this.sfx_click = this.sound.add("click");
+    this.sfx_miss = this.sound.add("miss");
+
+    
     this.physics.world.on("worldbounds", () => {
       this.sound.play("thud", { volume: 0.75 });
     });
@@ -102,7 +109,7 @@ export default class PlayScene extends Scene {
 
         if (this.restTime <= 0) {
           this.gameStatus = "timeover";
-          lastScore = this.score;
+          let lastScore = this.score;
         }
       } else if (this.gameStatus == "timeover") {
         // タイムオーバーになった次のコールバックでタイトルに戻る
@@ -140,6 +147,7 @@ export default class PlayScene extends Scene {
   typing(event) {
     console.log(event.key.toLowerCase());
     if (this.gameStatus != "playing") return;
+    this.sfx_click.play();
     this.lastKey = event.key.toLowerCase();
     if (this.waitingKey == event.key.toLowerCase()) {
       this.inputIndex++;
@@ -149,16 +157,16 @@ export default class PlayScene extends Scene {
       if (this.inputIndex > this.questionSentence.length - 1) {
         // 次の問題に移る
         this.inputText.text = "";
-        // TODO this.sfx_success.play();
+        this.sfx_correct.play();
         this.question();
       } else {
-        // TODO this.sfx_typing.play();
+        this.sfx_click.play();
         // 次の文字に移る
         this.inputText.text += String(this.lastKey);
         this.waitingKey = this.questionSentence[this.inputIndex].toLowerCase();
       }
     }else{
-      // TODO 間違い音を鳴らす
+      this.sfx_miss.play()
     }
   }
 

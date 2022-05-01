@@ -4,6 +4,7 @@ import bomb from "@/game/assets/bomb.png";
 import titleBack from "@/game/assets/titleBack.png";
 import titleLogo from "@/game/assets/titleLogo.png";
 import missWav from "@/game/assets/miss.wav";
+import clickMp3 from "@/game/assets/click.mp3";
 import happy_bg from "@/game/assets/happy_BG.jpg";
 import TitleScene from "@/game/scenes/TitleScene";
 import clapMp3 from "@/game/assets/clap.mp3";
@@ -88,25 +89,29 @@ export default class BootScene extends Scene {
       }
       // 問題画像インポート
       for (var i = 0; i < mondai.length; i++) {
-        var q_txt_img_path = require("@/game/assets/question_txt/" + mondai[i][2] + ".png");
+
+        // console.log('@/game/assets/keyboard/key_orange/key_' + keyList[i] + '.png')
+        var q_txt_img_path = require("@/game/assets/question_txt_2/" + mondai[i][3]);
+        //this.q_txt_img_paths[keyList[i]] =
+
         console.log(String("q_img_" + mondai[i][2]));
         this.load.image(String("q_img_" + mondai[i][2]), [q_txt_img_path]);
       }
     });
-
+    // 画像
     this.load.image("sky", sky);
     this.load.image("bomb", bomb);
     this.load.image("happy_bg", happy_bg);
     this.load.image("titleBack", titleBack);
     this.load.image("titleLogo", titleLogo);
-    // 音声
     this.load.image("titleBack", titleBack);
+    // 音声
     this.load.audio("miss", missWav);
     this.load.audio("fanfare", fanfareMp3);
     this.load.audio("correct", correctWav);
+    this.load.audio("click", clickMp3);
     this.load.audio("thud", [thudMp3, thudOgg]);
     this.load.audio("clap", [clapMp3, clapOgg]);
-    this.load.audio("miss", missWav);
   }
 
   //title start
