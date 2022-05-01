@@ -1,7 +1,7 @@
 
 import { Scene } from "phaser";
 import { keyList } from "@/game/scenes/BootScene";
-import { mondai } from '@/game/scenes/BootScene'
+import { mondai, bg_list } from '@/game/scenes/BootScene'
 
 
 export default class PlayScene extends Scene {
@@ -27,7 +27,9 @@ export default class PlayScene extends Scene {
     this.keyImages = { orange: [], white: [] };
 
     // ==== 背景画像 ====
-    this.BGImage = this.add.image(400,300, "happy_bg");
+    console.log(bg_list[Math.floor(Math.random() * bg_list.length)])
+    this.BGImage = this.add.image(400,300, "BG_" + bg_list[Math.floor(Math.random() * bg_list.length)]);
+    bg_list[Math.floor(Math.random() * bg_list.length)]
 
     // ==== キーボード文字 ====
     // for(var i=0;i < keyList.length; i++){

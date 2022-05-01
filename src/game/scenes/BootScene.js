@@ -68,6 +68,7 @@ export let keyList = [
   "under",
   "enter",
 ];
+export let bg_list = ["anger", "happy", "horror", "huwahuwa", "sawayaka", "sorrow"];
 export default class BootScene extends Scene {
   constructor() {
     super({ key: "BootScene" });
@@ -81,10 +82,18 @@ export default class BootScene extends Scene {
       mondai.forEach((e) => console.log("momo", e));
       console.log(mondai);
       console.log(mondai[0].length);
+      // 背景画像インポート
+      for (var i = 0; i < bg_list.length; i++) {
+        var bg_img_path = require("@/game/assets/background/" + bg_list[i] + "_BG.jpg");
+        this.load.image(String("BG_" + bg_list[i]), [bg_img_path]);
+      }
+      // 問題画像インポート
       for (var i = 0; i < mondai.length; i++) {
+
         // console.log('@/game/assets/keyboard/key_orange/key_' + keyList[i] + '.png')
         var q_txt_img_path = require("@/game/assets/question_txt_2/" + mondai[i][3]);
         //this.q_txt_img_paths[keyList[i]] =
+
         console.log(String("q_img_" + mondai[i][2]));
         this.load.image(String("q_img_" + mondai[i][2]), [q_txt_img_path]);
       }
