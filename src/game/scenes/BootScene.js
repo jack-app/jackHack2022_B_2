@@ -9,6 +9,9 @@ import clapMp3 from '@/game/assets/clap.mp3'
 import clapOgg from '@/game/assets/clap.ogg'
 import thudMp3 from '@/game/assets/thud.mp3'
 import thudOgg from '@/game/assets/thud.ogg'
+import key_b from '@/game/assets/key_b.png'
+import fanfareMp3 from '@/game/assets/fanfare.mp3'
+import correctWav from '@/game/assets/correct.wav'
 
 
 
@@ -118,22 +121,15 @@ export let keyList = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', 'hyphen'
 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'semicoron', 'coron', 'Rkakko', 'shift', 
 'z', 'x', 'c', 'v', 'b', 'n', 'm', 'comma', 'period', 'slash', 'under', 'enter']
 export default class BootScene extends Scene {
-    constructor() {
-        super({ key: 'BootScene' })
-    }
+
     preload() {
         getFile().then(()=>{
         // ロードするやつ
-        this.load.image('sky', sky)
-        this.load.image('bomb', bomb)
-        this.load.image('happy_bg', happy_bg)
         this.whiteKeyImages = {};
         this.orangeKeyImages = {};
         mondai.forEach(e=>console.log('momo',e))
         console.log(mondai)
-        console.log(mondai[0].length)
-
-            
+        console.log(mondai[0].length)            
             for (var i = 0; i < mondai.length; i++) {
                 // console.log('@/game/assets/keyboard/key_orange/key_' + keyList[i] + '.png')
                   var q_txt_img_path = require('@/game/assets/question_txt/' + mondai[i][2] + '.png')
@@ -144,8 +140,14 @@ export default class BootScene extends Scene {
         })
 
         
-
+       this.load.image('sky', sky)
+        this.load.image('bomb', bomb)
+        this.load.image('happy_bg', happy_bg)
         // 音声
+      this.load.image('titleBack',titleBack)
+    this.load.audio('miss', missWav)
+    this.load.audio('fanfare',fanfareMp3)
+    this.load.audio('correct',correctWav)
         this.load.audio('thud', [thudMp3, thudOgg])
         this.load.audio('miss', missWav)
 
