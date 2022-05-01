@@ -1,23 +1,30 @@
 
 import { Scene } from "phaser";
-import { mondai, keyList } from "@/game/scenes/BootScene";
+import { keyList } from "@/game/scenes/BootScene";
+import { mondai } from '@/game/scenes/BootScene'
+
+
 export default class PlayScene extends Scene {
   constructor() {
     super({ key: "PlayScene" });
 
   }
 
+
   create() {
+    console.log(mondai)
     this.gameStatus = "starting";
     this.inputIndex = 0;
     this.score = 0;
     this.lastKey = "";
     this.waitingKey = "";
     this.questionImagePath = "bomb";
+    this.questionImagePosition = [300,400];
     this.questionSentence = mondai[0][0];
     this.questions = mondai;
     this.restTime = 100;
     this.inputKeys = "";
+    this.keyImages = { orange: [], white: [] };
 
     // ==== 背景画像 ====
     this.BGImage = this.add.image(400,300, "happy_bg");
@@ -62,7 +69,15 @@ export default class PlayScene extends Scene {
       .setOrigin(1, 0)
       .setFontSize(32)
       .setFontFamily("monospace, serif");
-    this.questionImage = this.add.image(400, 300, "bomb");
+    
+    this.questionImage = this.add.image(this.questionImagePosition, this.questionImagePath);
+    
+
+    // for(var i=0;i < keyList.length; i++){
+    //   let x = this.put_key(i)[0];
+    //   let y = this.put_key(i)[1];
+    //   this.keyImages["white"][i] = this.add.image(x,y,"white_key_"+keyList[i]);
+    // }
 
     this.sound.add("thud");
     this.physics.world.on("worldbounds", () => {
@@ -102,11 +117,30 @@ export default class PlayScene extends Scene {
   }
 
   update() {}
+  put_key(index){// キーボードの画像の一個一個のボタンの一を返す関数
+    let counter = 0;
+    let x_one = 65;
+    let x_zurasu = 5;
+    let y_one = 80;
+    let x_base = 10;
+    let y_base = 200;
+    if(index>=0 && index <14){
+      return [x_base + x_zurasu * 0 + (index - counter) * x_one, y_base + y_one*0]
+    }else if(index < 25){
+      counter = 13;
+      return [x_base + x_zurasu * 1 + (index - counter) * x_one, y_base + y_one*1]
+    }else if(index < 38 ){
+      counter = 26;
+      return [x_base + x_zurasu * 2 + (index - counter) * x_one, y_base + y_one*2]
+    }else{
+      counter = 40
+      return [x_base + x_zurasu * 3 + (index - counter) * x_one, y_base + y_one*3]
+    }
+  }
   typing(event) {
     console.log(event.key.toLowerCase());
     if (this.gameStatus != "playing") return;
     this.lastKey = event.key.toLowerCase();
-    // this.keyText.text = String(this.lastKey);
     if (this.waitingKey == event.key.toLowerCase()) {
       this.inputIndex++;
       this.score++;
@@ -128,12 +162,15 @@ export default class PlayScene extends Scene {
     }
   }
 
+
   question() {
+    this.questionImage.visible = false;
     this.questionIndex = Math.floor(Math.random() * this.questions.length);
     this.questionSentence = this.questions[this.questionIndex][2];
-    this.imagePath = this.questions[this.questionIndex][3];
-    console.log("quin", this.questionSentence);
-    // this.questionImage.name = "sky";
+    this.questionImagePath = 'q_img_'  + this.questions[this.questionIndex][2];
+    console.log("quin", this.questionImagePath);
+    this.questionImage = this.add.image(400,300, this.questionImagePath);
+
     this.inputIndex = 0; // 入力の文字数を0にリセット
     this.waitingKey = this.questionSentence[this.inputIndex].toLowerCase();
 
