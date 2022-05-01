@@ -68,7 +68,7 @@ export let keyList = [
   "under",
   "enter",
 ];
-let bg_list = ["anger", "happy", "horror", "huwahuwa", "sawayaka", "sorrow"];
+export let bg_list = ["anger", "happy", "horror", "huwahuwa", "sawayaka", "sorrow"];
 export default class BootScene extends Scene {
   constructor() {
     super({ key: "BootScene" });
