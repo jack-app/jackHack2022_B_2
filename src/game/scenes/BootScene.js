@@ -83,7 +83,7 @@ export default class BootScene extends Scene {
       console.log(mondai[0].length);
       for (var i = 0; i < mondai.length; i++) {
         // console.log('@/game/assets/keyboard/key_orange/key_' + keyList[i] + '.png')
-        var q_txt_img_path = require("@/game/assets/question_txt/" + mondai[i][2] + ".png");
+        var q_txt_img_path = require("@/game/assets/question_txt_2/" + mondai[i][3]);
         //this.q_txt_img_paths[keyList[i]] =
         console.log(String("q_img_" + mondai[i][2]));
         this.load.image(String("q_img_" + mondai[i][2]), [q_txt_img_path]);

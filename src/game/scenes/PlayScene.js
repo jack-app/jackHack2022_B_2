@@ -109,7 +109,7 @@ export default class PlayScene extends Scene {
 
         if (this.restTime <= 0) {
           this.gameStatus = "timeover";
-          lastScore = this.score;
+          let lastScore = this.score;
         }
       } else if (this.gameStatus == "timeover") {
         // タイムオーバーになった次のコールバックでタイトルに戻る
