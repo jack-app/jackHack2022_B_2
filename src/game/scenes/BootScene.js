@@ -156,6 +156,7 @@ export default class BootScene extends Scene {
     this.load.audio('fanfare',fanfareMp3)
     this.load.audio('correct',correctWav)
         this.load.audio('thud', [thudMp3, thudOgg])
+        this.load.audio('clap', [clapMp3, clapOgg])
         this.load.audio('miss', missWav)
 
     }
